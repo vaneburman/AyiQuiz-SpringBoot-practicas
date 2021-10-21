@@ -1,0 +1,23 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.text-light {
+    font-size: 22px;
+    text-align: center;
+    padding: 15px 25px;
+    border-radius: 4px;
+    background-color: #0c1c59;
+}
+
+
+
+
+
