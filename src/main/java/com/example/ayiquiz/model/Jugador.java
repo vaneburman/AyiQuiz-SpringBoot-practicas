@@ -9,14 +9,14 @@ public class Jugador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     private String nombre;
     private String apellido;
     private String userName;
 
 
-    public Jugador(String id, String nombre, String apellido, String userName) {
+    public Jugador(Long id, String nombre, String apellido, String userName) {
         super();
         this.id = id;
         this.nombre = nombre;
@@ -28,11 +28,11 @@ public class Jugador {
         super();
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

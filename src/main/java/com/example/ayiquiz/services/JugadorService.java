@@ -3,6 +3,7 @@ package com.example.ayiquiz.services;
 import com.example.ayiquiz.model.Jugador;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface JugadorService {
@@ -10,11 +11,11 @@ public interface JugadorService {
 
     List<Jugador> retrieveJugadores();
 
-    Jugador getJugador(String jugadorId);
+    Optional<Jugador> getJugador(Long jugadorID);
 
     void saveJugador(String nombre, String apellido, String userName);
 
-    void deleteJugador(String jugadorId);
+    void deleteJugador(Long jugadorID);
 
     void updateJugador(Jugador jugador);
 }
