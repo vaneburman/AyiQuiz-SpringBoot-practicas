@@ -2,6 +2,7 @@ package com.example.ayiquiz.model;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Getter
@@ -11,15 +12,21 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Component
-public class Jugador {
+public class Preguntas {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long idQ;
 
-    private String nombre;
-    private String apellido;
-    private String userName;
-
+    @Column
+    private String pregunta;
+    @Column
+    private String opcion1;
+    @Column
+    private String opcion2;
+    @Column
+    private String opcion3;
+    @Column
+    private String opcionCorrecta;
 
 }

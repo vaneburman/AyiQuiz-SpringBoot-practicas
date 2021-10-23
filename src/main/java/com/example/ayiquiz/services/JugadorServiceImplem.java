@@ -36,7 +36,13 @@ public class JugadorServiceImplem implements JugadorService{
             jugador.setNombre(nombre);
             jugador.setApellido(apellido);
             jugador.setUserName(userName);
-            jugadorDAO.save(jugador);
+
+        System.out.println("este es el jugador " + jugador);
+        List<Jugador> listaDeJugadores = retrieveJugadores();
+        System.out.println(listaDeJugadores);
+        listaDeJugadores.add(jugador);
+        jugadorDAO.saveAll(listaDeJugadores);
+        System.out.println(listaDeJugadores);
         }
 
 

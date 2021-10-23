@@ -30,13 +30,22 @@ public class JugadorController {
         return "saveJugador";
     }
 
-    @PostMapping("/quiz")
-    public String quiz(String nombre, String apellido, String userName, Model model) {
-        jugadorService.saveJugador(nombre, apellido, userName);
-        model.addAttribute("nombre", nombre);
+    @GetMapping("/cambiar")
+    public String cambiarJugador(){ return "saveJugador"; }
 
+    /*@PostMapping("/quiz")
+    public String quiz(String nombre, String apellido, String userName, Model model) {
+        if (jugador.getUserName() == null) {
+            jugadorService.saveJugador(nombre, apellido, userName);
+            model.addAttribute("nombre", nombre);
+        } else {
+            jugador.setNombre(nombre);
+            jugador.setApellido(apellido);
+            jugador.setUserName(userName);
+            jugadorService.updateJugador(jugador);
+        }
         return "quiz";
-    }
+    }*/
 
 
 }
