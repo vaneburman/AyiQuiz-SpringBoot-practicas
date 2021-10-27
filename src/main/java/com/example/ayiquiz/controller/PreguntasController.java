@@ -25,12 +25,18 @@ public class PreguntasController {
         return preguntas;
     }
 
-    @PostMapping("/jugador/quiz")
+    @GetMapping("/quiz")
     public String getPreguntas (Model model) {
 
         model.addAttribute("conjuntoPreguntas", preguntasService.getConjuntoPreguntas());
 
         return "quiz";
 
+    }
+
+    @PostMapping("/submit")
+    public String getSubmitPage(){
+        //colocar en los controladores de las respuestas
+        return "submit";
     }
 }

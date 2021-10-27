@@ -14,7 +14,7 @@ public interface PreguntasService {
 
     Optional<Preguntas> getPreguntas(Long preguntasID);
 
-    void savePregunta(String pregunta, String opcion1, String opcion2, String opcion3);
+    void savePregunta(String pregunta, String opcion1, String opcion2, String opcion3, String OpcionCorrecta);
 
     void deletePregunta(Long preguntasID);
 

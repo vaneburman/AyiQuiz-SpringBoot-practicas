@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
+@RequestMapping(path="/api")
 public class JugadorRestController {
 
     @Autowired
@@ -21,10 +23,55 @@ public class JugadorRestController {
         this.jugadorService = jugadorService;
     }
 
-    @GetMapping("/api/jugadores")
-    public List<Jugador> getJugadores() {
+/*    @PostMapping("/jugador/{id}")*/
+
+    @GetMapping("/list")
+    public List<Jugador> listarJugadores(){
         return jugadorService.retrieveJugadores();
     }
+
+    @GetMapping("/{id}")
+    public Optional<Jugador> obtenerJugador(@PathVariable("id") Long id){
+        return jugadorService.getJugador(id);
+    }
+
+    @PostMapping("/add")
+    public void agregarJugador(@RequestBody String nombre, String apellido, String userName){
+        jugadorService.saveJugador(nombre, apellido, userName);
+    }
+
+    @PutMapping("/{id}")
+    public void actualizarJugador(@PathVariable("id") Long id, @RequestBody String nombre, String apellido, String userName)
+    {
+        try {
+            Optional<Jugador> jugadorOpc = jugadorService.getJugador(id);
+            if(jugadorOpc.isPresent()){
+                Jugador jugador = jugadorOpc.get();
+                jugador.setNombre(nombre);
+                jugador.setApellido(apellido);
+                jugador.setUserName(userName);
+                jugadorService.updateJugador(jugador);
+            } else {
+                System.out.println("No se encontró el ID del jugador");
+            }
+
+        }catch (Exception e){
+            System.out.println("ERROR AL ACTUALIZAR JUGADOR");
+        }
+
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminarJugador(@PathVariable("id") Long id){
+        try{
+            jugadorService.getJugador(id);
+            jugadorService.deleteJugador(id);
+        } catch (Exception e){
+            System.out.println("No se pudo eliminar el jugador, id incorrecto");
+        }
+    }
+
+
 
 
 

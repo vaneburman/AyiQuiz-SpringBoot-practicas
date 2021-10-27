@@ -33,11 +33,12 @@ public class PreguntasServiceImplem implements PreguntasService {
     }
 
     @Override
-    public void savePregunta(String pregunta, String opcion1, String opcion2, String opcion3) {
+    public void savePregunta(String pregunta, String opcion1, String opcion2, String opcion3, String OpcionCorrecta) {
         preguntas.setPregunta(pregunta);
         preguntas.setOpcion1(opcion1);
         preguntas.setOpcion2(opcion2);
         preguntas.setOpcion3(opcion3);
+        preguntas.setOpcionCorrecta(OpcionCorrecta);
 
         preguntasDAO.save(preguntas);
 

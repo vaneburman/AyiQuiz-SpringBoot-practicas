@@ -1,6 +1,4 @@
 package com.example.ayiquiz.controller;
-
-
 import com.example.ayiquiz.model.Jugador;
 import com.example.ayiquiz.services.JugadorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,26 +24,30 @@ public class JugadorController {
 
 
     @GetMapping("/agregar")
-    public String home() {
+    public String home(Model model) {
+        model.addAttribute("jugador", jugador);
         return "saveJugador";
     }
 
-    @GetMapping("/cambiar")
-    public String cambiarJugador(){ return "saveJugador"; }
+    @PostMapping("/quiz")
+    public String quiz(String nombre, String apellido, String userName, Model model){
+        jugadorService.saveJugador(nombre, apellido, userName);
 
-    /*@PostMapping("/quiz")
-    public String quiz(String nombre, String apellido, String userName, Model model) {
-        if (jugador.getUserName() == null) {
-            jugadorService.saveJugador(nombre, apellido, userName);
-            model.addAttribute("nombre", nombre);
-        } else {
-            jugador.setNombre(nombre);
-            jugador.setApellido(apellido);
-            jugador.setUserName(userName);
-            jugadorService.updateJugador(jugador);
-        }
-        return "quiz";
-    }*/
+        return "redirect:/quiz";
+    }
+
+    @GetMapping("/cambiar")
+    public String cambiarJugador(){
+        return "saveJugador";
+    }
+
+    @PostMapping("/agregar")
+    public String guardarJugador(Jugador jugador){
+        jugadorService.updateJugador(jugador);
+        return "redirect:/agregar";
+
+    }
+
 
 
 }

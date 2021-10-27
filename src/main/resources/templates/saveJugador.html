@@ -24,7 +24,7 @@
     <div class="text-box">
         <h1 class="mb-5 text-center">Quiz Ayi con Spring Boot</h1>
 
-        <form action="#" th:action="@{/jugador/quiz}" method="post" th:object="${jugador}">>
+        <form action="#" th:action="@{/jugador/quiz}" method="post" th:object="${jugador}">
             <p>¿Cuál es tu Nombre?</p>
             <label>
                 <input type="text" name= "nombre" th:field="*{nombre}" />

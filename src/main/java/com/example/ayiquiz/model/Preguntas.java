@@ -28,5 +28,9 @@ public class Preguntas {
     private String opcion3;
     @Column
     private String opcionCorrecta;
+    @Column
+    private String respuesta;
 
+
+  
 }
