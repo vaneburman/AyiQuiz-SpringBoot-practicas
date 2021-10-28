@@ -26,7 +26,7 @@ public class PreguntasRestController {
         preguntasService.savePregunta(preguntas.getPregunta(), preguntas.getOpcion1(), preguntas.getOpcion2(), preguntas.getOpcion3(), preguntas.getOpcionCorrecta());
     }
 
-    @PutMapping("/preguntas")
+    @PutMapping("/preguntas/{id}")
     public void putPreguntas(@PathVariable Long id, @RequestBody Preguntas preguntas){
         preguntasService.savePregunta(preguntas.getPregunta(), preguntas.getOpcion1(), preguntas.getOpcion2(), preguntas.getOpcion3(), preguntas.getOpcionCorrecta());
     }

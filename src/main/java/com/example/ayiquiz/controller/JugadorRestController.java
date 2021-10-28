@@ -43,7 +43,6 @@ public class JugadorRestController {
     @PutMapping("/{id}")
     public void actualizarJugador(@PathVariable("id") Long id, @RequestBody String nombre, String apellido, String userName)
     {
-        try {
             Optional<Jugador> jugadorOpc = jugadorService.getJugador(id);
             if(jugadorOpc.isPresent()){
                 Jugador jugador = jugadorOpc.get();
@@ -55,20 +54,12 @@ public class JugadorRestController {
                 System.out.println("No se encontró el ID del jugador");
             }
 
-        }catch (Exception e){
-            System.out.println("ERROR AL ACTUALIZAR JUGADOR");
-        }
-
     }
 
     @DeleteMapping("/{id}")
     public void eliminarJugador(@PathVariable("id") Long id){
-        try{
             jugadorService.getJugador(id);
             jugadorService.deleteJugador(id);
-        } catch (Exception e){
-            System.out.println("No se pudo eliminar el jugador, id incorrecto");
-        }
     }
 
 
