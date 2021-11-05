@@ -3,6 +3,7 @@ package com.example.ayiquiz.model;
 import lombok.*;
 import org.springframework.stereotype.Component;
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -21,5 +22,8 @@ public class Jugador {
     private String apellido;
     private String userName;
 
+    @OneToMany(mappedBy = "jugador")
+    @ToString.Exclude
+    private Set<Partida> partidas;
+    }
 
-}

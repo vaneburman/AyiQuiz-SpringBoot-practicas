@@ -1,7 +1,8 @@
 package com.example.ayiquiz.services;
 
 import com.example.ayiquiz.model.ConjuntoPreguntas;
-import com.example.ayiquiz.model.Preguntas;
+import com.example.ayiquiz.model.Opcion;
+import com.example.ayiquiz.model.Pregunta;
 import com.example.ayiquiz.repositories.JPAPreguntasDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,30 +17,27 @@ public class PreguntasServiceImplem implements PreguntasService {
     JPAPreguntasDAO preguntasDAO;
 
     @Autowired
-    Preguntas preguntas;
+    Pregunta preguntas;
 
     @Autowired
     ConjuntoPreguntas conjuntoPreguntas;
 
 
     @Override
-    public List<Preguntas> retrievePreguntas() {
+    public List<Pregunta> retrievePreguntas() {
         return preguntasDAO.findAll();
     }
 
     @Override
-    public Optional<Preguntas> getPreguntas(Long preguntasID) {
+    public Optional<Pregunta> getPreguntas(Long preguntasID) {
         return preguntasDAO.findById(preguntasID);
     }
 
     @Override
-    public void savePregunta(String pregunta, String opcion1, String opcion2, String opcion3, String OpcionCorrecta) {
+    public void savePregunta(String pregunta, Integer puntos, List<Opcion> opciones) {
         preguntas.setPregunta(pregunta);
-        preguntas.setOpcion1(opcion1);
-        preguntas.setOpcion2(opcion2);
-        preguntas.setOpcion3(opcion3);
-        preguntas.setOpcionCorrecta(OpcionCorrecta);
-
+        preguntas.setPuntos(puntos);
+        preguntas.setOpciones(opciones);
         preguntasDAO.save(preguntas);
 
     }
@@ -51,14 +49,14 @@ public class PreguntasServiceImplem implements PreguntasService {
     }
 
     @Override
-    public void updatePregunta(Preguntas pregunta) {
+    public void updatePregunta(Pregunta pregunta) {
         preguntasDAO.save(pregunta);
 
     }
 
 
     public ConjuntoPreguntas getConjuntoPreguntas() {
-        List<Preguntas> listaPreguntas = preguntasDAO.findAll();
+        List<Pregunta> listaPreguntas = preguntasDAO.findAll();
 
         conjuntoPreguntas.setListado(listaPreguntas);
 

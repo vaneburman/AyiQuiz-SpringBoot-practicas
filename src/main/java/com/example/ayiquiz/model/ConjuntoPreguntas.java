@@ -7,13 +7,13 @@ import java.util.List;
 @Component
 public class ConjuntoPreguntas {
 
-    private List<Preguntas> listado;
+    private List<Pregunta> listado;
 
-    public List<Preguntas> getListado() {
+    public List<Pregunta> getListado() {
         return listado;
     }
 
-    public void setListado(List<Preguntas> listado){
+    public void setListado(List<Pregunta> listado){
         this.listado = listado;
     }
 }

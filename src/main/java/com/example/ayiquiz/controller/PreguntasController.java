@@ -1,7 +1,7 @@
 package com.example.ayiquiz.controller;
 
 
-import com.example.ayiquiz.model.Preguntas;
+import com.example.ayiquiz.model.Pregunta;
 import com.example.ayiquiz.services.PreguntasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,11 +18,11 @@ public class PreguntasController {
     PreguntasService preguntasService;
 
     @Autowired
-    Preguntas preguntas;
+    Pregunta pregunta;
 
     @ModelAttribute("preguntas")
-    public Preguntas getPreguntas() {
-        return preguntas;
+    public Pregunta getPreguntas() {
+        return pregunta;
     }
 
     @GetMapping("/quiz")

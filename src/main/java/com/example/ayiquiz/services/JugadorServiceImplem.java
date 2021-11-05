@@ -28,7 +28,6 @@ public class JugadorServiceImplem implements JugadorService{
         //arreglar!!!
        public Optional<Jugador> getJugador(Long jugadorID){
            return jugadorDAO.findById(jugadorID);
-
         }
 
 
@@ -50,9 +49,10 @@ public class JugadorServiceImplem implements JugadorService{
         jugadorDAO.deleteById(jugadorID);
         }
 
-        public void updateJugador (Jugador jugador){
+       public void updateJugador(Long id, Jugador jugador){
+
+            jugador.setId(id);
             jugadorDAO.save(jugador);
         }
+       }
 
-
-}

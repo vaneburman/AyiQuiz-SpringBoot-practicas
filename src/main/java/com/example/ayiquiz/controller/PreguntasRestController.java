@@ -1,6 +1,6 @@
 package com.example.ayiquiz.controller;
 
-import com.example.ayiquiz.model.Preguntas;
+import com.example.ayiquiz.model.Pregunta;
 import com.example.ayiquiz.services.PreguntasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,20 +14,21 @@ public class PreguntasRestController {
     private PreguntasService preguntasService;
 
     @Autowired
-    Preguntas preguntas;
+    Pregunta pregunta;
+/*
 
     @GetMapping("/preguntas")
-    public List<Preguntas> getPreguntas(){
+    public List<Pregunta> getPreguntas(){
         return preguntasService.retrievePreguntas();
     }
 
     @PostMapping("/preguntas")
-    public void postPreguntas(@RequestBody Preguntas preguntas){
+    public void postPreguntas(@RequestBody Pregunta preguntas){
         preguntasService.savePregunta(preguntas.getPregunta(), preguntas.getOpcion1(), preguntas.getOpcion2(), preguntas.getOpcion3(), preguntas.getOpcionCorrecta());
     }
 
     @PutMapping("/preguntas/{id}")
-    public void putPreguntas(@PathVariable Long id, @RequestBody Preguntas preguntas){
+    public void putPreguntas(@PathVariable Long id, @RequestBody Pregunta preguntas){
         preguntasService.savePregunta(preguntas.getPregunta(), preguntas.getOpcion1(), preguntas.getOpcion2(), preguntas.getOpcion3(), preguntas.getOpcionCorrecta());
     }
 
@@ -36,6 +37,7 @@ public class PreguntasRestController {
         preguntasService.deletePregunta(id);
     }
 
+*/
 
 
 

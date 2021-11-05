@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Component
-public class Preguntas {
+public class Pregunta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,16 +21,13 @@ public class Preguntas {
 
     @Column
     private String pregunta;
+
     @Column
-    private String opcion1;
-    @Column
-    private String opcion2;
-    @Column
-    private String opcion3;
-    @Column
-    private String opcionCorrecta;
-    @Column
-    private String respuesta;
+    private Integer puntos;
+
+    @OneToMany(mappedBy = "pregunta")
+    @ToString.Exclude
+    private List<Opcion> opciones;
 
 
   

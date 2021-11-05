@@ -2,7 +2,9 @@ package com.example.ayiquiz.controller;
 
 import com.example.ayiquiz.model.Jugador;
 import com.example.ayiquiz.services.JugadorService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,48 +25,82 @@ public class JugadorRestController {
         this.jugadorService = jugadorService;
     }
 
-/*    @PostMapping("/jugador/{id}")*/
+    //response entity
 
-    @GetMapping("/list")
-    public List<Jugador> listarJugadores(){
-        return jugadorService.retrieveJugadores();
-    }
+    @GetMapping("/jugadores")
+    public ResponseEntity<String> getAllJugadores() {
+        try {
+            List<Jugador> lista = jugadorService.retrieveJugadores();
 
-    @GetMapping("/{id}")
-    public Optional<Jugador> obtenerJugador(@PathVariable("id") Long id){
-        return jugadorService.getJugador(id);
-    }
+        ObjectMapper mapper = new ObjectMapper();
 
-    @PostMapping("/add")
-    public void agregarJugador(@RequestBody String nombre, String apellido, String userName){
-        jugadorService.saveJugador(nombre, apellido, userName);
-    }
+        String listaRta = mapper.writeValueAsString(lista);
 
-    @PutMapping("/{id}")
-    public void actualizarJugador(@PathVariable("id") Long id, @RequestBody String nombre, String apellido, String userName)
-    {
-            Optional<Jugador> jugadorOpc = jugadorService.getJugador(id);
-            if(jugadorOpc.isPresent()){
-                Jugador jugador = jugadorOpc.get();
-                jugador.setNombre(nombre);
-                jugador.setApellido(apellido);
-                jugador.setUserName(userName);
-                jugadorService.updateJugador(jugador);
-            } else {
-                System.out.println("No se encontró el ID del jugador");
-            }
+        return ResponseEntity.ok(listaRta);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            String error = "Error al obtener los jugadores " + e.getMessage() + " " + e.getCause();
+
+            return ResponseEntity.badRequest().body(error);
+        }
 
     }
 
-    @DeleteMapping("/{id}")
-    public void eliminarJugador(@PathVariable("id") Long id){
-            jugadorService.getJugador(id);
+    @GetMapping("/jugadores/{id}")
+    public ResponseEntity<String> getJugadorById(@PathVariable("id") Long id) {
+        try {
+            Optional<Jugador> jugador = jugadorService.getJugador(id);
+            ObjectMapper mapper = new ObjectMapper();
+            String jugadorRta = mapper.writeValueAsString(jugador);
+            return ResponseEntity.ok(jugadorRta);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            String error = "Error al obtener el jugador " + e.getMessage() + " " + e.getCause();
+            return ResponseEntity.badRequest().body(error);
+        }
+    }
+
+    @PostMapping("/jugadores")
+    public ResponseEntity<String> createJugador(@RequestBody Jugador jugador) {
+        try {
+            jugadorService.saveJugador(jugador.getNombre(), jugador.getApellido(), jugador.getUserName());
+            return ResponseEntity.ok("Jugador creado");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            String error = "Error al crear el jugador " + e.getMessage() + " " + e.getCause();
+            return ResponseEntity.badRequest().body(error);
+        }
+    }
+
+    @PutMapping("/jugadores/{id}")
+    public ResponseEntity<String> updateJugador(@PathVariable("id") Long id, @RequestBody Jugador jugador) {
+        try {
+            jugadorService.updateJugador(id, jugador);
+            return ResponseEntity.ok("Jugador actualizado");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            String error = "Error al actualizar el jugador " + e.getMessage() + " " + e.getCause();
+            return ResponseEntity.badRequest().body(error);
+        }
+    }
+
+    @DeleteMapping("/jugadores/{id}")
+    public ResponseEntity<String> deleteJugador(@PathVariable("id") Long id) {
+        try {
             jugadorService.deleteJugador(id);
+            return ResponseEntity.ok("Jugador eliminado");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            String error = "Error al eliminar el jugador " + e.getMessage() + " " + e.getCause();
+            return ResponseEntity.badRequest().body(error);
+        }
     }
 
+    }
 
-
-
-
-}
 

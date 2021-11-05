@@ -6,9 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @Entity
@@ -16,15 +14,17 @@ import javax.persistence.Id;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Respuestas {
+public class Opcion {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private Long idQ;
-    private String eleccion;
-    private boolean esCorrecta;
+    @ManyToOne
+    @JoinColumn(name = "idQ", nullable=false)
+    private Pregunta pregunta;
 
+   Boolean esCorrecta;
+   Boolean esSeleccionada;
 
 
 }

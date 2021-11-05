@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 
 @Controller
 @RequestMapping(path="/jugador")
@@ -15,12 +17,7 @@ public class JugadorController {
     JugadorService jugadorService;
 
     @Autowired
-    Jugador jugador;
-
-    @ModelAttribute("jugador")
-    public Jugador getJugador(){
-        return jugador;
-    }
+    Optional<Jugador> jugador;
 
 
     @GetMapping("/agregar")
@@ -29,24 +26,28 @@ public class JugadorController {
         return "saveJugador";
     }
 
-    @PostMapping("/quiz")
-    public String quiz(String nombre, String apellido, String userName, Model model){
-        jugadorService.saveJugador(nombre, apellido, userName);
-
+    @PostMapping(path="/quiz")
+    public String addJugador(@ModelAttribute Jugador jugador){
+        jugadorService.saveJugador(jugador.getNombre(), jugador.getApellido(), jugador.getUserName());
         return "redirect:/quiz";
     }
 
-    @GetMapping("/cambiar")
-    public String cambiarJugador(){
-        return "saveJugador";
+
+    @GetMapping(path="/edit/{id}")
+    public String updateJugador(@PathVariable Long id) {
+        //encontrar jugador con id
+        jugador = jugadorService.getJugador(id);
+        jugador.ifPresent(value -> jugadorService.updateJugador(id, value));
+
+        return "redirect:/saveJugador";
     }
 
-    @PostMapping("/agregar")
-    public String guardarJugador(Jugador jugador){
+    /*@PostMapping("/agregar")
+    public String guardarJugador(Long id, Jugador jugador){
         jugadorService.updateJugador(jugador);
         return "redirect:/agregar";
 
-    }
+    }*/
 
 
 

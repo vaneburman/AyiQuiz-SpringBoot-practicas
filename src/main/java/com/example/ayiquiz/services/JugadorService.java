@@ -17,5 +17,5 @@ public interface JugadorService {
 
     void deleteJugador(Long jugadorID);
 
-    void updateJugador(Jugador jugador);
+    void updateJugador(Long id, Jugador jugador);
 }
