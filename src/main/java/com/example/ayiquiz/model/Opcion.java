@@ -16,20 +16,21 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Opcion {
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "ID_OPCION", nullable = false)
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "idQ", nullable=false)
     private Pregunta pregunta;
 
-    @Column(name = "opcion", nullable = false)
+    @Column(name = "OPCION", nullable = false)
     private String opcion;
 
+    @Column(name = "ES_CORRECTA", nullable = false)
+    private boolean esCorrecta;
 
-
-   Boolean esCorrecta;
-   Boolean esSeleccionada;
+    @Column(name="ES_SELECCIONADA")
+    boolean esSeleccionada;
 
 
 }

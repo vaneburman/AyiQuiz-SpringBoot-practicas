@@ -52,7 +52,7 @@ public class JugadorServiceImplem implements JugadorService{
 
        public void updateJugador(Long id, Jugador jugador){
 
-            jugador.setId(id);
+            jugador.setIdJugador(id);
             jugadorDAO.save(jugador);
         }
        }

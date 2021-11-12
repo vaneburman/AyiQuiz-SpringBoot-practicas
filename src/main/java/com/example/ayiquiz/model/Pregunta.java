@@ -22,7 +22,7 @@ public class Pregunta {
     @Column(name = "PREGUNTA")
     private String pregunta;
 
-    @Column
+    @Column(name="PUNTOS")
     private Integer puntos;
 
     @OneToMany(mappedBy = "pregunta")

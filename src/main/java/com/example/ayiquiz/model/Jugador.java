@@ -16,11 +16,16 @@ public class Jugador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id;
+    @Column(name = "ID_JUGADOR")
+    private Long idJugador;
 
+    @Column(name = "NOMBRE")
     private String nombre;
+
+    @Column(name = "APELLIDO")
     private String apellido;
+
+    @Column(name="USERNAME")
     private String userName;
 
     @OneToMany(mappedBy = "jugador", cascade = CascadeType.ALL)
