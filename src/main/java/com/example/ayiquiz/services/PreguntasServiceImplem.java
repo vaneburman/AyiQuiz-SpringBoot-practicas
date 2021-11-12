@@ -34,10 +34,10 @@ public class PreguntasServiceImplem implements PreguntasService {
     }
 
     @Override
-    public void savePregunta(String pregunta, Integer puntos, List<Opcion> opciones) {
+    public void savePregunta(Long idQ, String pregunta, Integer puntos) {
         preguntas.setPregunta(pregunta);
         preguntas.setPuntos(puntos);
-        preguntas.setOpciones(opciones);
+        preguntas.setIdQ(idQ);
         preguntasDAO.save(preguntas);
 
     }

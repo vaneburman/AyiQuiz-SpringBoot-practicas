@@ -1,0 +1,17 @@
+En proceso...
+
+- Tengo un error de mapping con Partida y Jugador... trato de solucionarlo pero se desconfiguran algunas otras opciones.
+Se que tengo algo erróneo en la configuración, porque hasta el commit anterior funcionaba todo perfecto. Cargaba los templates y todo.
+2021-11-12 19:00:39.502 ERROR 20256 --- [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Repeated column in mapping for entity: com.example.ayiquiz.model.Partida column: id (should be mapped with insert="false" update="false")
+Ese es el primer error que tira cuando corro la aplicación.
+Más abajo dice Application run failed:
+. BeanCreationException...Error creating bean with name 'entityManagerFactory'
+
+- PersistenceException: Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Repeated column in mapping for entity: com.example.ayiquiz.model.Partida column: id (should be mapped with insert="false" update="false")
+
+- MappingException: Repeated column in mapping for entity: com.example.ayiquiz.model.Partida column: id (should be mapped with insert="false" update="false")
+
+Última actualización: modificación de los RestController para que retornen ResponseEntity<> y utilización de ObjectMapper para convertir los objetos a JSON.
+
+Resta completar:
+Seguridad.

@@ -16,13 +16,14 @@ public class Jugador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     private String nombre;
     private String apellido;
     private String userName;
 
-    @OneToMany(mappedBy = "jugador")
+    @OneToMany(mappedBy = "jugador", cascade = CascadeType.ALL)
     @ToString.Exclude
     private Set<Partida> partidas;
     }

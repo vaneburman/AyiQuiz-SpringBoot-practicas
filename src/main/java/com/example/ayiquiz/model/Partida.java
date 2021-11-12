@@ -17,10 +17,11 @@ public class Partida {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "ID_PARTIDA")
+    private Long idPartida;
 
     @ManyToOne
-    @JoinColumn(name="id", nullable=false)
+    @JoinColumn(name = "id", insertable = false, updatable = false)
     private Jugador jugador;
 
     @OneToMany

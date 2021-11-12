@@ -19,7 +19,7 @@ public class Pregunta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idQ;
 
-    @Column
+    @Column(name = "PREGUNTA")
     private String pregunta;
 
     @Column

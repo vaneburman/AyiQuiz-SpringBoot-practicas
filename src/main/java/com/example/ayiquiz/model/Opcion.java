@@ -23,6 +23,11 @@ public class Opcion {
     @JoinColumn(name = "idQ", nullable=false)
     private Pregunta pregunta;
 
+    @Column(name = "opcion", nullable = false)
+    private String opcion;
+
+
+
    Boolean esCorrecta;
    Boolean esSeleccionada;
 
